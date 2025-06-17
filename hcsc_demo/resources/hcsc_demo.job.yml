@@ -15,10 +15,19 @@ resources:
       #    - your_email@example.com
 
       tasks:
+        - task_key: condition_example
+          condition_task:
+            op: EQUAL_TO
+            left: "{{job.start_time.hour}}"
+            right: "11"
+
         - task_key: notebook_task
           job_cluster_key: job_cluster
           notebook_task:
             notebook_path: ../src/notebook.ipynb
+          depends_on:
+            - task_key: condition_example
+              outcome: "true"
 
         - task_key: refresh_pipeline
           depends_on:
