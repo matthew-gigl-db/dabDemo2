@@ -1,0 +1,29 @@
+# This is a Databricks asset bundle definition for hcsc_demo.
+# See https://docs.databricks.com/dev-tools/bundles/index.html for documentation.
+bundle:
+  name: hcsc_demo
+  uuid: c8441c17-2f1d-4085-b253-ae925cd60ffb
+
+include:
+  - resources/*.yml
+
+targets:
+  dev:
+    # The default target uses 'mode: development' to create a development copy.
+    # - Deployed resources get prefixed with '[dev my_user_name]'
+    # - Any job schedules and triggers are paused by default.
+    # See also https://docs.databricks.com/dev-tools/bundles/deployment-modes.html.
+    mode: development
+    default: true
+    workspace:
+      host: https://dbc-08c9eac2-f2a7.cloud.databricks.com
+
+  prod:
+    mode: production
+    workspace:
+      host: https://dbc-08c9eac2-f2a7.cloud.databricks.com
+      # We explicitly deploy to /Workspace/Users/odl_instructor_1452233@databrickslabs.com to make sure we only have a single copy.
+      root_path: /Workspace/Users/odl_instructor_1452233@databrickslabs.com/.bundle/${bundle.name}/${bundle.target}
+    permissions:
+      - user_name: odl_instructor_1452233@databrickslabs.com
+        level: CAN_MANAGE
