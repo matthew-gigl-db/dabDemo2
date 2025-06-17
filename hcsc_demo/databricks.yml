@@ -5,8 +5,8 @@ bundle:
   uuid: c8441c17-2f1d-4085-b253-ae925cd60ffb
 
 include:
-  # - resources/*.yml
-  - resources/*.pipe*.yml
+  - resources/*.yml
+  # - resources/*.pipe*.yml
 
 targets:
   dev:
