@@ -1,0 +1,13 @@
+# The main pipeline for hcsc_demo
+resources:
+  pipelines:
+    hcsc_demo_pipeline:
+      name: hcsc_demo_pipeline
+      catalog: datascience
+      schema: hcsc_demo_${bundle.target}
+      libraries:
+        - notebook:
+            path: ../src/dlt_pipeline.ipynb
+
+      configuration:
+        bundle.sourcePath: ${workspace.file_path}/src
